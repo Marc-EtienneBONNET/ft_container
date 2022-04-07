@@ -48,6 +48,9 @@
         "streambuf": "cpp",
         "typeinfo": "cpp",
         "my_define_include.hpp": "c",
-        "*.tpp": "cpp"
+        "*.tpp": "cpp",
+        "complex": "cpp",
+        "ctime": "cpp",
+        "iomanip": "cpp"
     }
 }

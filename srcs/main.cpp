@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:09:38 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/04/07 13:43:48 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/04/07 18:02:37 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,21 @@
 
 int	main(void)
 {
-	my_vector<int> test1_vector;
-	my_vector<int> test2_vector(3,10);
-	for (my_vector<int>::pointeur it = test2_vector._start; it != test2_vector._end; it++)
-		std::cout << "test2_vector contenue : " << *it << std::endl;
-	std::cout << "test1_vector: " << test1_vector.size() << std::endl;
-	std::cout << "test2_vector: " << test2_vector.size() << std::endl;
-	//std::cout << "test2_vector : " << test1_vector._start << std::endl;
-	//my_vector<int> test3_vector(test2_vector.begin(),test2_vector.end());
+	int	tab[] = {1,2,3,4};
+	R_A_iterator<int> test_iterator(tab);
+	std::cout << VIOLET << "--------Random_access_iterator--------" << BLANC << std::endl;
+	std::cout << "methode getVal : " << test_iterator.getValPointeur() << std::endl;
+	std::cout << "methode get    : " << test_iterator.getPointeur() << std::endl;
+	std::cout << "---operateur++ ---" << std::endl;
+	++test_iterator;
+	std::cout << "methode getVal : " << test_iterator.getValPointeur() << std::endl;
+	std::cout << "---operateur-- ---" << std::endl;
+	--test_iterator;
+	std::cout << "methode getVal : " << test_iterator.getValPointeur() << std::endl;
 
-	//for (int x = 0; x < 10 ; x++)
-	//	std::cout << "test2_vector : " << test2_vector.tab[x] << std::endl;
+	//std::cout << "operator << : " << test_iterator << std::endl;
+	
+	
+
 	return (0);
 }
