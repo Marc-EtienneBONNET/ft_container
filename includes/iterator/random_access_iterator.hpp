@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 16:35:14 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/04/12 18:51:30 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/04/12 19:45:47 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,15 @@ public :
     void         operator-=(R_A_iterator &ori)          {*(this->pointeur) -= ori.getValPointeur();};
     void         operator+=(T val)                      {*(this->pointeur) += val;};
     void         operator-=(T val)                      {*(this->pointeur) -= val;};
-    bool          operator==(R_A_iterator &ori) const    {if (this->pointeur == ori.getPointeur()) return (true); else return (false);};
-    bool          operator==(T val) const                {if (*(this->pointeur) == val) return (true); else return (false);};
-    bool          operator!=(R_A_iterator &ori) const    {if (this->pointeur != ori.getPointeur()) return (true); else return (false);};
-    bool          operator!=(T val) const                {if (*(this->pointeur) != val) return (true); else return (1);};
-    bool          operator<=(R_A_iterator &ori) const    {if (*(this->pointeur) <= ori.getValPointeur()) return (true); else return (false);};
-    bool          operator<(R_A_iterator &ori) const     {if (*(this->pointeur) < ori.getValPointeur()) return (true); else return (false);};
-    bool          operator>=(R_A_iterator &ori) const    {if (*(this->pointeur) >= ori.getValPointeur()) return (true); else return (false);};
-    bool          operator>(R_A_iterator &ori) const     {if (*(this->pointeur) > ori.getValPointeur()) return (true); else return (false);};
+    
+    bool         operator==(R_A_iterator &ori) const    {if (this->pointeur == ori.getPointeur()) return (true); else return (false);};
+    //bool         operator==(T val) const                {if (*(this->pointeur) == val) return (true); else return (false);};
+    bool         operator!=(R_A_iterator &ori) const    {if (this->pointeur != ori.getPointeur()) return (true); else return (false);};
+    //bool         operator!=(T val) const                {if (*(this->pointeur) != val) return (true); else return (1);};
+    bool         operator<=(R_A_iterator &ori) const    {if (*(this->pointeur) <= ori.getValPointeur()) return (true); else return (false);};
+    bool         operator<(R_A_iterator &ori) const     {if (*(this->pointeur) < ori.getValPointeur()) return (true); else return (false);};
+    bool         operator>=(R_A_iterator &ori) const    {if (*(this->pointeur) >= ori.getValPointeur()) return (true); else return (false);};
+    bool         operator>(R_A_iterator &ori) const     {if (*(this->pointeur) > ori.getValPointeur()) return (true); else return (false);};
     T            operator[](int index)                  {return (this->pointeur[index]);};
     T            *operator<<(R_A_iterator &ori)         {return (ori->getPointeur());};
 protected :
