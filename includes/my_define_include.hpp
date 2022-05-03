@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:14:08 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/04/07 16:39:27 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/03 17:02:15 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 # define JAUNE "\e[1;33m"
 # define VIOLET "\e[1;35m"
 # define BLANC "\e[0m"
+# include "ft.hpp"
 # include "vector.hpp"
 # include "iterator/random_access_iterator.hpp"
+# include "iterator/random_reverse_access_iterator.hpp"
 
 
 #endif

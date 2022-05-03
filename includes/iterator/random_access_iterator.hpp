@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 16:35:14 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/04/12 19:45:47 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/03 16:58:27 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,67 @@
 #ifndef R_ITERATOR_HPP
 # define R_ITERATOR_HPP
 
-template<typename T>
-class R_A_iterator : std::iterator<std::random_access_iterator_tag, T>
-{ 
-public :
-    R_A_iterator(void)                                  {};
-    R_A_iterator(R_A_iterator &ori)                     {(void)ori;};
-    R_A_iterator(T *ori)                                {this->pointeur = ori;};
-    ~R_A_iterator(void)                                 {}; 
-    T            *getPointeur() const                   {return (this->pointeur);};
-    T            getValPointeur()const                  {return (*(this->pointeur));};
-    R_A_iterator &operator=(R_A_iterator &ori)          {if (this != &ori) *this = ori; return (*this);};
-    R_A_iterator &operator=(T *val)                     {this->pointeur = val; return (*this);};
-    R_A_iterator operator*(R_A_iterator *ori) const     {return (*ori);};
-    R_A_iterator &operator->(void) const                {return (*this);};
-    //void         operator++(R_A_iterator &ori)          {ori.getPointeur()++;};
-    //void         operator--(R_A_iterator &ori)          {ori.getPointeur()--;};
-    void         operator++(void)                       {this->pointeur++;};
-    void         operator--(void)                       {this->pointeur--;};
-    T            *operator+(T val) const                 {return (&(this->pointeur[val]));};
-    T            *operator-(T val) const                 {T *tmp; tmp = pointeur; while (val-- > 0){tmp--;} return (tmp);};
-    //T            *operator+(T val) const                 {return (&(this->pointeur[val]));};
-    //T            *operator-(T val) const                 {T *tmp; tmp = pointeur; while (val-- > 0){tmp--;} return (tmp);};
-    void         operator+=(R_A_iterator &ori)          {*(this->pointeur) += ori.getValPointeur();};
-    void         operator-=(R_A_iterator &ori)          {*(this->pointeur) -= ori.getValPointeur();};
-    void         operator+=(T val)                      {*(this->pointeur) += val;};
-    void         operator-=(T val)                      {*(this->pointeur) -= val;};
-    
-    bool         operator==(R_A_iterator &ori) const    {if (this->pointeur == ori.getPointeur()) return (true); else return (false);};
-    //bool         operator==(T val) const                {if (*(this->pointeur) == val) return (true); else return (false);};
-    bool         operator!=(R_A_iterator &ori) const    {if (this->pointeur != ori.getPointeur()) return (true); else return (false);};
-    //bool         operator!=(T val) const                {if (*(this->pointeur) != val) return (true); else return (1);};
-    bool         operator<=(R_A_iterator &ori) const    {if (*(this->pointeur) <= ori.getValPointeur()) return (true); else return (false);};
-    bool         operator<(R_A_iterator &ori) const     {if (*(this->pointeur) < ori.getValPointeur()) return (true); else return (false);};
-    bool         operator>=(R_A_iterator &ori) const    {if (*(this->pointeur) >= ori.getValPointeur()) return (true); else return (false);};
-    bool         operator>(R_A_iterator &ori) const     {if (*(this->pointeur) > ori.getValPointeur()) return (true); else return (false);};
-    T            operator[](int index)                  {return (this->pointeur[index]);};
-    T            *operator<<(R_A_iterator &ori)         {return (ori->getPointeur());};
-protected :
-private :
-    T *pointeur;
-};
+namespace ft
+{
+    template <typename T, bool is_const>
+    class Iterator
+    {
+        typedef std::ptrdiff_t                                              difference_type;
+        typedef typename ft::is_constant<is_const, const T *, T *>::type    pointer;
+        typedef typename ft::is_constant<is_const, const T &, T &>::type    reference;
+        typedef ft::random_access_iterator_tag                              iterator_category;
 
+        Iterator(pointer ptr = 0) : _ptr(ptr) {};
+        ~Iterator(void){};
+        template<bool is_const_2>
+        Iterator(const Iterator<T, is_const_2> &ori) : _ptr(ori._ptr){};
+        Iterator operator=(Iterator &ori)
+        {
+            if (&ori != this)
+                this->_ptr = ori._ptr;
+            return (*this);
+        }
+        public :
+        bool            operator==(Iterator const &ori) const {if (&ori._ptr == this->_ptr){return (true);} else {return (false);}};
+        bool            operator!=(Iterator const &ori) const {if (&ori._ptr != this->_ptr){return (true);} else {return (false);}};
+        bool            operator<(Iterator const &ori) const {if (this->_ptr < &ori._ptr){return (true);} else {return (false);}};
+        bool            operator>(Iterator const &ori) const {if (this->_ptr > &ori._ptr){return (true);} else {return (false);}};
+        bool            operator<=(Iterator const &ori) const {if (this->_ptr <= &ori._ptr){return (true);} else {return (false);}};
+        bool            operator>=(Iterator const &ori) const {if (this->_ptr >= &ori._ptr){return (true);} else {return (false);}};
+        Iterator&       operator++(void) {this->_ptr++; return (*this);};
+        Iterator&       operator--(void) {this->_ptr--; return (*this);};
+        Iterator        operator++(int) {Iterator old = *this; this->_ptr++; return (old);};
+        Iterator        operator--(int) {Iterator old = *this; this->_ptr--; return (old);};
+        reference       operator*(void) const {return (*this->_ptr);};
+        pointer        operator->(void) const {return (this->_ptr);};
+        Iterator        operator+(difference_type const &ori) const {return Iterator(this->_ptr + ori);};
+        Iterator        operator-(difference_type ori) const {return Iterator(this->_ptr - ori);};
+        difference_type operator-(Iterator const &ori) const {return (_ptr - ori._ptr);};
+        Iterator&       operator+=(difference_type const &ori) {this->_ptr += ori; return (*this);};
+        Iterator&       operator-=(difference_type ori) {this->_ptr -= ori; return (*this);};
+        reference       operator[](difference_type ori) {return (*(this->ptr + ori));};
+        pointer         base(void) const {return (this->_ptr);};
+
+        private :
+        pointer _ptr;
+    };
+}
+
+template <typename T>
+bool    operator!=(const ft::Iterator<T, false> &ori, const ft::Iterator<T, true> &ori_2){ if (&ori.base() != &ori_2.base()){return (true);} return (false);};
+template <typename T>
+bool    operator==(const ft::Iterator<T, false> &ori, const ft::Iterator<T, true> &ori_2){ if (&ori.base() == &ori_2.base()){return (true);} return (false);};
+template <typename T>
+ft::Iterator<T,false>    operator+(const ft::Iterator<T, false> &ori, const ft::Iterator<T, true> &ori_2){return (ft::Iterator<T,false>(ori.base() + ori_2.base()));};
+template <typename T>
+ft::Iterator<T,false>    operator-(const ft::Iterator<T, false> &ori, const ft::Iterator<T, true> &ori_2){return (ft::Iterator<T,false>(ori.base() - ori_2.base()));};
+template <typename T>
+bool    operator<(const ft::Iterator<T, false> &ori, const ft::Iterator<T, true> &ori_2){ if (&ori.base() < &ori_2.base()){return (true);} return (false);};
+template <typename T>
+bool    operator>(const ft::Iterator<T, false> &ori, const ft::Iterator<T, true> &ori_2){ if (&ori.base() > &ori_2.base()){return (true);} return (false);};
+template <typename T>
+bool    operator<=(const ft::Iterator<T, false> &ori, const ft::Iterator<T, true> &ori_2){ if (&ori.base() <= &ori_2.base()){return (true);} return (false);};
+template <typename T>
+bool    operator>=(const ft::Iterator<T, false> &ori, const ft::Iterator<T, true> &ori_2){ if (&ori.base() >= &ori_2.base()){return (true);} return (false);};
 # include "../../templates/iterator/random_access_iterator.tpp"
 #endif
