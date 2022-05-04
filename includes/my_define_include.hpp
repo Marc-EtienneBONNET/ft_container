@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:14:08 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/04 11:04:45 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/04 16:31:56 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include "iterator/random_access_iterator.hpp"
 # include "iterator/random_access_riverse_iterator.hpp"
 # include "vector.hpp"
+# include "stack.hpp"
 
 
 #endif
