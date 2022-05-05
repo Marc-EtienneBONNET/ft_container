@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:32:37 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/05 17:29:56 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/05 17:39:04 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,34 @@ void	teste_reverse_iterator()
 	ft::vector<int>::reverse_iterator ft_iterator3(ft_vector0.begin());
 	std::vector<int>::reverse_iterator std_iterator3(std_vector0.begin());
 	info_moniteur_iterator(2,"operateur de comparaison");
-	std::cout << "     ft|std" << std::endl;
+	std::cout << "          ft|std" << std::endl;
 	std::cout << "it1==it1 : " << (ft_iterator1 == ft_iterator1) << "|" << (std_iterator1 == std_iterator1) << std::endl;
+	std::cout << "it1==it2 : " << (ft_iterator1 == ft_iterator2) << "|" << (std_iterator1 == std_iterator2) << std::endl;
+	std::cout << "it1==it3 : " << (ft_iterator1 == ft_iterator3) << "|" << (std_iterator1 == std_iterator3) << std::endl << std::endl;
+	std::cout << "          ft|std" << std::endl;
+	std::cout << "it1!=it1 : " << (ft_iterator1 != ft_iterator1) << "|" << (std_iterator1 != std_iterator1) << std::endl;
+	std::cout << "it1!=it2 : " << (ft_iterator1 != ft_iterator2) << "|" << (std_iterator1 != std_iterator2) << std::endl;
+	std::cout << "it1!=it3 : " << (ft_iterator1 != ft_iterator3) << "|" << (std_iterator1 != std_iterator3) << std::endl << std::endl;
+	std::cout << "          ft|std" << std::endl;
+	std::cout << "it1 < it1 : " << (ft_iterator1 < ft_iterator1) << "|" << (std_iterator1 < std_iterator1) << std::endl;
+	std::cout << "it1 < it2 : " << (ft_iterator1 < ft_iterator2) << "|" << (std_iterator1 < std_iterator2) << std::endl;
+	std::cout << "it1 < it3 : " << (ft_iterator1 < ft_iterator3) << "|" << (std_iterator1 < std_iterator3) << std::endl << std::endl;
+	std::cout << "          ft|std" << std::endl;
+	std::cout << "it1 > it1 : " << (ft_iterator1 > ft_iterator1) << "|" << (std_iterator1 > std_iterator1) << std::endl;
+	std::cout << "it1 > it2 : " << (ft_iterator1 > ft_iterator2) << "|" << (std_iterator1 > std_iterator2) << std::endl;
+	std::cout << "it1 > it3 : " << (ft_iterator1 > ft_iterator3) << "|" << (std_iterator1 > std_iterator3) << std::endl << std::endl;
+		std::cout << "          ft|std" << std::endl;
+	std::cout << "it1 >= it1 : " << (ft_iterator1 >= ft_iterator1) << "|" << (std_iterator1 >= std_iterator1) << std::endl;
+	std::cout << "it1 >= it2 : " << (ft_iterator1 >= ft_iterator2) << "|" << (std_iterator1 >= std_iterator2) << std::endl;
+	std::cout << "it1 >= it3 : " << (ft_iterator1 >= ft_iterator3) << "|" << (std_iterator1 >= std_iterator3) << std::endl << std::endl;
+		std::cout << "          ft|std" << std::endl;
+	std::cout << "it1<=it1 : " << (ft_iterator1 <= ft_iterator1) << "|" << (std_iterator1 <= std_iterator1) << std::endl;
+	std::cout << "it1<=it2 : " << (ft_iterator1 <= ft_iterator2) << "|" << (std_iterator1 <= std_iterator2) << std::endl;
+	std::cout << "it1<=it3 : " << (ft_iterator1 <= ft_iterator3) << "|" << (std_iterator1 <= std_iterator3) << std::endl << std::endl;
+	info_moniteur_iterator(2,"fin");
+
+	info_moniteur_iterator(3,"operateur de comparaison");
+	std::cout << "     ft|std" << std::endl;
 
 	std::cout << "--  : " << *(--ft_iterator1) << "|" << *(--std_iterator1) << std::endl;
 	std::cout << "  --: " << *(ft_iterator1--) << "|" << *(std_iterator1--) << std::endl;
@@ -156,5 +182,5 @@ void	teste_reverse_iterator()
 	std::cout << "-=  : " << *(ft_iterator1 -= 3) << "|" << *(std_iterator1 -= 3) << std::endl;
 	std::cout << "+=  : " << *(ft_iterator1 += 2) << "|" << *(std_iterator1 += 2) << std::endl;
 	std::cout << "[]  : " << ft_iterator1[1] << "|" << std_iterator1[1] << std::endl;
-	info_moniteur_iterator(2,"fin");
+	info_moniteur_iterator(3,"fin");
 }
