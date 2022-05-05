@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:14:08 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/05 11:04:28 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/05 17:24:59 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@
 # include "iterator/random_access_riverse_iterator.hpp"
 # include "vector.hpp"
 # include "stack.hpp"
+
+void	teste_vector();
+void	teste_iterator();
+void	teste_reverse_iterator();
 
 
 #endif

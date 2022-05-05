@@ -6,11 +6,11 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 10:57:22 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/05 13:02:58 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/05 16:03:08 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_HPP
+#ifndef VECTOR_HPP 
 # define VECTOR_HPP
 #include "my_define_include.hpp"
 
@@ -24,10 +24,10 @@ namespace ft
 		typedef typename A::const_reference		const_reference;
 		typedef typename A::pointer				pointer;
 		typedef typename A::const_pointer		const_pointer;
-		typedef	Iterator<T, false>				iterator;
-		typedef	Iterator<T, true>				const_iterator;
-		typedef	ReverseIterator<iterator>		reverse_iterator;
-		typedef	ReverseIterator<const_iterator>	const_reverse_iterator;
+		typedef	ft::iterator<T, false>				iterator;
+		typedef	ft::iterator<T, true>				const_iterator;
+		typedef	Reverseiterator<iterator>		reverse_iterator;
+		typedef	Reverseiterator<const_iterator>	const_reverse_iterator;
 		typedef std::ptrdiff_t					difference_type;
 		typedef size_t							size_type;
 		vector(const A& alloc = A()) : _ptr(NULL), _size(0), _capacity(0), _alloc(alloc){};
@@ -69,9 +69,9 @@ namespace ft
 		{
 			_clear_alloc(this->_size);
 			reserve(n);
+			this->_size = n;
 			for (size_type i = 0; i < n; i++)
 				this->_alloc.construct(this->_ptr + i, val);
-			this->_size = n;
 		};
 		void	push_back(const T &val)
 		{
@@ -86,7 +86,6 @@ namespace ft
 				return ;
 			_alloc.destroy(&this->_ptr[this->_size - 1]);
 			this->_size--;
-			this->_capacity--;
 		}
 		iterator insert(iterator position, const T &val)
 		{
@@ -223,12 +222,11 @@ namespace ft
 			}
 			else
 			{
-				iterator first = this->begin();
-				for (size_type i = n; i < this->_size; i++)
-					this->_alloc.destroy(&(*(first + i)));
+				iterator last = this->end();
+				for (size_type i = n; i > this->_size; i++)
+					this->_alloc.destroy(&(*(last - i)));
 			}
 			this->_size = n;
-			this->_capacity = n;
 		};
 		size_type	capacity(void) const {return (this->_capacity);};
 		bool		empty() const { if (this->_size == 0) return (true); return (false);};
@@ -247,7 +245,7 @@ namespace ft
 			}
 			this->_alloc.deallocate(this->_ptr, this->_capacity);
 			this->_ptr = tmp;
-			//this->_capacity = n;
+			this->_capacity = n;
 		};
 		A	get_allocator() const {return (A());};
 	private :
@@ -260,7 +258,6 @@ namespace ft
 			for (size_t i = 0; i < n; i++)
 				this->_alloc.destroy(&this->_ptr[i]);
 			this->_size = 0;
-			this->_capacity = 0;
 		}
 		
 		template<class ite>
