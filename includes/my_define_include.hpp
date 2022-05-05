@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:14:08 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/05 17:24:59 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/05 22:56:03 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <limits>
 # include <cstddef>
 #include <vector>
+#include <stack>
 
 # define BLEU "\e[1;36m"
 # define BLEU_2 "\e[1;34m"
@@ -36,6 +37,7 @@
 void	teste_vector();
 void	teste_iterator();
 void	teste_reverse_iterator();
+void	teste_stack();
 
 
 #endif

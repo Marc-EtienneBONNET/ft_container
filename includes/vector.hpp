@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 10:57:22 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/05 17:36:17 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/05 23:12:22 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ namespace ft
 	class vector 
 	{
 	public :
+		typedef T								value_type;
 		typedef typename A::reference			reference;
 		typedef typename A::const_reference		const_reference;
 		typedef typename A::pointer				pointer;
@@ -295,9 +296,9 @@ namespace ft
 	template<class T, class Alloc>
 	bool operator==(const vector<T,Alloc> &v1, const vector<T,Alloc> &v2)
 	{
-		if (v1._size != v2._size)
+		if (v1.size() != v2.size())
 			return (false);
-		for (size_t i = 0; i < v1._size; i++)
+		for (size_t i = 0; i < v1.size(); i++)
 			if (v1[i] != v2[i])
 				return (false);
 		return (true);
@@ -305,19 +306,26 @@ namespace ft
 	template<class T, class Alloc>
 	bool operator!=(const vector<T,Alloc> &v1, const vector<T,Alloc> &v2)
 	{
-		if (v1 != v2)
+		if (v1 == v2)
+			return (false);
+		return (true);
+	};
+	template<class T, class Alloc>
+	bool operator>(const vector<T,Alloc> &v1, const vector<T,Alloc> &v2)
+	{
+		return (lexicographical_compare(v1.begin(), v1.end(), v2.begin(), v2.end()));
+	};
+	template<class T, class Alloc>
+	bool operator<(const vector<T,Alloc> &v1, const vector<T,Alloc> &v2){if (v1 > v2) return (false); return (true);};
+	template<class T, class Alloc>
+	bool operator<=(const vector<T,Alloc> &v1, const vector<T,Alloc> &v2)
+	{
+		if (v1 < v2 || v1 == v2)
 			return (true);
 		return (false);
 	};
 	template<class T, class Alloc>
-	bool operator<(const vector<T,Alloc> &v1, const vector<T,Alloc> &v2){if (v1 < v2) return (true); return (false);};
-	template<class T, class Alloc>
-	bool operator>(const vector<T,Alloc> &v1, const vector<T,Alloc> &v2){if (v1 > v2) return (true); return (false);};
-	template<class T, class Alloc>
-	bool operator<=(const vector<T,Alloc> &v1, const vector<T,Alloc> &v2){if (v1 <= v2) return (true); return (false);};
-	template<class T, class Alloc>
-	bool operator>=(const vector<T,Alloc> &v1, const vector<T,Alloc> &v2){if (v1 >= v2) return (true); return (false);};
+	bool operator>=(const vector<T,Alloc> &v1, const vector<T,Alloc> &v2){if (v1 > v2 || v1 == v2) return (true); return (false);};
 };
-
 #include "../templates/vector.tpp"
 #endif

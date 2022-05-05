@@ -6,7 +6,7 @@
 #    By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 13:05:15 by mbonnet           #+#    #+#              #
-#    Updated: 2022/05/05 16:01:07 by mbonnet          ###   ########.fr        #
+#    Updated: 2022/05/05 22:56:03 by mbonnet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME			=	executable
 SRCS			=	srcs/main.cpp\
 					srcs/tester_vector.cpp\
 					srcs/tester_iterator.cpp\
+					srcs/tester_stack.cpp\
 
 OBJS			=	${addprefix ,${SRCS:.cpp=.o}}
 

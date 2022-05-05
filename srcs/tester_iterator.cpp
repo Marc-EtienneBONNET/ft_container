@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:32:37 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/05 17:39:04 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/05 22:56:03 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	teste_iterator()
 	std_vector0.push_back(4);
 	std_vector0.push_back(5);
 	std::cout << "Dans le cardes de ce teste, nous avons init un iterator vector de ft et 1 de std avec 5 valeur de 1 a 5" << std::endl;
-	std::cout << VIOLET << "---------------deb des teste constructeur---------------" << BLANC << std::endl;
+	std::cout << VIOLET << "---------------deb des teste iterator---------------" << BLANC << std::endl;
 	info_moniteur_iterator(0,"init d un iterator par copie");
 	ft::vector<int>::iterator ft_iterator1(ft_vector0.begin());
 	std::vector<int>::iterator std_iterator1(std_vector0.begin());
@@ -113,6 +113,7 @@ void	teste_iterator()
 	std::cout << "it1 <= it4 : " << (ft_iterator1 <= ft_iterator4) << "|" << (std_iterator1 <= std_iterator4) << std::endl;
 	std::cout << "it1 <= it5 : " << (ft_iterator1 <= ft_iterator5) << "|" << (std_iterator1 <= std_iterator5) << std::endl;
 	info_moniteur_iterator(3,"fin");
+	std::cout << VIOLET << "---------------fin des teste iterator---------------" << BLANC << std::endl;
 }
 
 void	teste_reverse_iterator()
@@ -130,7 +131,7 @@ void	teste_reverse_iterator()
 	std_vector0.push_back(4);
 	std_vector0.push_back(5);
 	std::cout << "Dans le cardes de ce teste, nous avons init un iterator vector de ft et 1 de std avec 5 valeur de 1 a 5" << std::endl;
-	std::cout << VIOLET << "---------------deb des teste constructeur---------------" << BLANC << std::endl;
+	std::cout << VIOLET << "---------------deb des teste reserve iterator---------------" << BLANC << std::endl;
 	info_moniteur_iterator(0,"init d un reverse_iterator par copie");
 	ft::vector<int>::reverse_iterator ft_iterator1(ft_vector0.begin());
 	std::vector<int>::reverse_iterator std_iterator1(std_vector0.begin());
@@ -183,4 +184,5 @@ void	teste_reverse_iterator()
 	std::cout << "+=  : " << *(ft_iterator1 += 2) << "|" << *(std_iterator1 += 2) << std::endl;
 	std::cout << "[]  : " << ft_iterator1[1] << "|" << std_iterator1[1] << std::endl;
 	info_moniteur_iterator(3,"fin");
+	std::cout << VIOLET << "---------------fin des teste iterator---------------" << BLANC << std::endl;
 }
