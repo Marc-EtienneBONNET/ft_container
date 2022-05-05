@@ -6,14 +6,14 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 10:57:22 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/04 16:45:23 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/05 07:38:19 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_HPP
 # define STACK_HPP
 #include "my_define_include.hpp"
-
+/*
 namespace ft
 {
 	template<class T, class Container = ft::vector<T> >
@@ -63,6 +63,6 @@ namespace ft
 	template< class T, class Container >
 	bool operator>=( const stack<T,Container>& lhs, const stack<T,Container>& rhs ) { return lhs.c >= rhs.c; };
 };
-
+*/
 #include "../templates/stack.tpp"
 #endif

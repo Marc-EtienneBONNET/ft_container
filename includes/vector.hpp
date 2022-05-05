@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 10:57:22 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/04 15:55:11 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/05 13:02:58 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ namespace ft
 			return (*this);
 		};
 		template<class ite>
-		void assign(ite first, ite last)
+		void assign(ite first, ite last,  typename enable_if< !is_integral< ite >::value >::type* = 0)
 		{
 			difference_type distance;
 
@@ -70,13 +70,14 @@ namespace ft
 			_clear_alloc(this->_size);
 			reserve(n);
 			for (size_type i = 0; i < n; i++)
-				_alloc.construct(this->_ptr + i, val);
+				this->_alloc.construct(this->_ptr + i, val);
+			this->_size = n;
 		};
 		void	push_back(const T &val)
 		{
 			if (this->_size + 1 > this->_capacity)
 				reserve(this->_size + 1);
-			_alloc.construct(&this->_ptr + this->_size, val);
+			_alloc.construct(this->_ptr + this->_size, val);
 			this->_size++;
 		};
 		void	pop_back(void)
@@ -85,6 +86,7 @@ namespace ft
 				return ;
 			_alloc.destroy(&this->_ptr[this->_size - 1]);
 			this->_size--;
+			this->_capacity--;
 		}
 		iterator insert(iterator position, const T &val)
 		{
@@ -126,7 +128,7 @@ namespace ft
 				for (size_type l = 0; l < len; l++)
 					this->_alloc.destroy(tmp + l);
 				this->_alloc.deallocate(tmp, len);
-				this->ptr = tab;
+				this->_ptr = tab;
 				this->_capacity += len;
 				this->_size += len;
 			}
@@ -136,7 +138,7 @@ namespace ft
 					position = insert(position, *first++);
 			}
 		}
-		iterator ecrase(iterator position)
+		iterator erase(iterator position)
 		{
 			size_type pos = &(*position) - this->_ptr;
 			this->_alloc.destroy(this->_ptr + pos);
@@ -146,9 +148,10 @@ namespace ft
 				this->_alloc.destroy(this->_ptr + pos + 1);
 			}
 			this->_size -= 1;
+			this->_capacity -= 1;
 			return (iterator(position));
 		}
-		iterator ecrase(iterator first, iterator last)
+		iterator erase(iterator first, iterator last)
 		{
 			size_type n = 0;
 			size_type pos = (&(*first) - this->_ptr);
@@ -164,6 +167,7 @@ namespace ft
 					this->_alloc.destroy(this->_ptr + l + n);
 				}
 				this->_size -= n;
+				this->_capacity -= n;
 			}
 			return (iterator(this->_ptr + pos));
 		}
@@ -201,8 +205,8 @@ namespace ft
 		
 		reference		front() {return (*(this->_ptr));};
 		const_reference	front() const {return (*(this->_ptr));};
-		reference		back() {return (*(this->_ptr[this->_size - 1]));};
-		const_reference	back() const {return (*(this->_ptr[this->_size - 1]));};
+		reference		back() {return (this->_ptr[this->_size - 1]);};
+		const_reference	back() const {return (this->_ptr[this->_size - 1]);};
 		
 		size_type		size() const {return (this->_size);};
 		size_type		max_size() const {return A().max_size();};
@@ -224,6 +228,7 @@ namespace ft
 					this->_alloc.destroy(&(*(first + i)));
 			}
 			this->_size = n;
+			this->_capacity = n;
 		};
 		size_type	capacity(void) const {return (this->_capacity);};
 		bool		empty() const { if (this->_size == 0) return (true); return (false);};
@@ -237,12 +242,12 @@ namespace ft
 			tmp = this->_alloc.allocate(n, 0);
 			for (size_type i = 0; i < this->_size; i++)
 			{
-				this->_alloc.construct(tmp + i, this->_ptr + i);
+				this->_alloc.construct(tmp + i, this->_ptr[i]);
 				this->_alloc.destroy(this->_ptr + i);
 			}
 			this->_alloc.deallocate(this->_ptr, this->_capacity);
 			this->_ptr = tmp;
-			this->_capacity = n;
+			//this->_capacity = n;
 		};
 		A	get_allocator() const {return (A());};
 	private :
@@ -255,6 +260,7 @@ namespace ft
 			for (size_t i = 0; i < n; i++)
 				this->_alloc.destroy(&this->_ptr[i]);
 			this->_size = 0;
+			this->_capacity = 0;
 		}
 		
 		template<class ite>
@@ -268,7 +274,7 @@ namespace ft
 			}
 			for (ite last = this->end(); last != position; last--)
 			{
-				this->alloc.construct(&(*last), *(last - step));
+				this->_alloc.construct(&(*last), *(last - step));
 			}
 			this->_alloc.construct(&(*position), val);
 			this->_size = this->_size + step;

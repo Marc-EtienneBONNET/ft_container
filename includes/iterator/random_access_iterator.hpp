@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 16:35:14 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/04 10:24:09 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/05 12:08:30 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ namespace ft
     class Iterator
     {
         public :
+		typedef T														    value_type;
         typedef std::ptrdiff_t                                              difference_type;
         typedef typename ft::is_constant<is_const, const T *, T *>::type    pointer;
         typedef typename ft::is_constant<is_const, const T &, T &>::type    reference;
@@ -29,14 +30,14 @@ namespace ft
         ~Iterator(void){};
         template<bool is_const_2>
         Iterator(const Iterator<T, is_const_2> &ori) : _ptr(ori._ptr){};
-        Iterator operator=(Iterator &ori)
+        Iterator &operator=(Iterator const &ori)
         {
             if (&ori != this)
                 this->_ptr = ori._ptr;
             return (*this);
         }
-        bool            operator==(Iterator const &ori) const {if (&ori._ptr == this->_ptr){return (true);} else {return (false);}};
-        bool            operator!=(Iterator const &ori) const {if (&ori._ptr != this->_ptr){return (true);} else {return (false);}};
+        bool            operator==(Iterator const &ori) const {if (ori._ptr == this->_ptr){return (true);} else {return (false);}};
+        bool            operator!=(Iterator const &ori) const {if (ori._ptr != this->_ptr){return (true);} else {return (false);}};
         bool            operator<(Iterator const &ori) const {if (this->_ptr < &ori._ptr){return (true);} else {return (false);}};
         bool            operator>(Iterator const &ori) const {if (this->_ptr > &ori._ptr){return (true);} else {return (false);}};
         bool            operator<=(Iterator const &ori) const {if (this->_ptr <= &ori._ptr){return (true);} else {return (false);}};

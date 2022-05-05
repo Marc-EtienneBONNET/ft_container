@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:14:08 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/04 16:31:56 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/05 11:04:28 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 # include <iostream>
 # include <string>
 # include <iterator>
+# include <memory>
+# include <limits>
+# include <cstddef>
 #include <vector>
 
 # define BLEU "\e[1;36m"
