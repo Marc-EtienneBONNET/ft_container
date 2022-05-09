@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:14:08 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/05 22:56:03 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/09 17:52:57 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <cstddef>
 #include <vector>
 #include <stack>
+#include <map>
 
 # define BLEU "\e[1;36m"
 # define BLEU_2 "\e[1;34m"
@@ -31,13 +32,20 @@
 # include "ft.hpp"
 # include "iterator/random_access_iterator.hpp"
 # include "iterator/random_access_riverse_iterator.hpp"
+# include "iterator/LegacyBidirectionalIterator.hpp"
+# include "iterator/LegacyReverseBidirectionalIterator.hpp"
 # include "vector.hpp"
 # include "stack.hpp"
+# include "RedBlackTree.hpp"
+# include "map.hpp"
+
+
 
 void	teste_vector();
 void	teste_iterator();
 void	teste_reverse_iterator();
 void	teste_stack();
+void	teste_map();
 
 
 #endif

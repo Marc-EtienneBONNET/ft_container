@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:29:56 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/05 23:09:17 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/09 15:48:38 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 namespace ft
 {
+	struct bidirectional_iterator_tag {};
+	struct random_access_iterator_tag {};
 	template<class Iter>
 	struct iterator_traits
 	{
@@ -24,7 +26,6 @@ namespace ft
 		typedef typename Iter::iterator_category	iterator_category;
 		typedef typename Iter::value_type			value_type;
 	};
-	struct random_access_iterator_tag {};
 	template <bool isConstant, typename const_type, typename notConst_type>
 	struct is_constant{};
 
@@ -93,7 +94,52 @@ namespace ft
 	struct is_integral<unsigned long> { static const bool value = true; };
 	template <>
 	struct is_integral<unsigned long long> { static const bool value = true; };
-}
 
+
+	template <class T>
+	struct less : std::binary_function<T, T, bool>
+	{
+		bool operator() (const T& x, const T& y) const { return (x < y); }
+	};
+
+	template<class T1, class T2>
+	struct pair
+	{
+		typedef T1 first_type;
+		typedef T2 second_type;
+
+		T1 first;
+		T2 second;
+
+		pair() : first(), second() {};
+
+		pair( const T1& x, const T2& y ) : first(x), second(y) {};
+
+		template< class U1, class U2 >
+		pair( const pair<U1, U2>& p ) : first(p.first), second(p.second) {};
+
+		pair& operator=( const pair& other ) {
+			if (this == &other)
+				return *this;
+			first = other.first;
+			second = other.second;
+			return *this;
+		};
+	};
+	template<class T1, class T2>
+	pair<T1,T2> make_pair( T1 t, T2 u ) { return ft::pair<T1, T2>(t, u); };
+	template<class InputIterator1, class InputIterator2>
+	bool equal(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2)
+	{
+		while (first1 != last1)
+		{
+			if (!(*first1 == *first2)) // or: if (!pred(*first1,*first2)), for version 2
+				return false;
+			++first1;
+			++first2;
+		}
+		return true;
+	}
+}
 
 #endif
