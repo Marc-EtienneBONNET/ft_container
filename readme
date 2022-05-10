@@ -1,0 +1,21 @@
+I) Compétences abordées 📚
+
+	Language C++98
+
+	Bibliothèque STL
+
+II) Temp de réalisation ⌚️
+
+	Estimé : 3 semaines
+
+III) Sujet 📄
+
+	Le sujet de ce projet est de réimplémenter certains conteneurs de la STL. C'est une librairie contenant divers composant facilitant la programmation en c++. Vector, List, Map, Stack et Queue sont les conteneurs à réimplémenter.
+		Stack
+		Vector
+		Map
+
+
+IV) Avis personnel sur le projet 👨🏻‍🔬
+
+	Projet tres long et peux motivant mais donnant une exelante comprention du fonctionnement des containers et de ses iterators
