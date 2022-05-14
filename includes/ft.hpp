@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:29:56 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/09 15:48:38 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/14 17:03:31 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,23 @@ namespace ft
 	{
 		while (first1!=last1)
 		{
-			if (first2==last2 || *first2<*first1)
+			if (first2==last2 || *first2 < *first1)
 				return false;
 			else if (*first1 < *first2)
+				return true;
+			++first1;
+			++first2;
+		}
+		return (first2 != last2);
+	}
+		template <class InputIterator1, class InputIterator2>
+	bool lexicographical_compare2(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, InputIterator2 last2)
+	{
+		while (first1!=last1)
+		{
+			if (first2==last2 || first2->second < first1->second)
+				return false;
+			else if (first1->second < first2->second)
 				return true;
 			++first1;
 			++first2;
@@ -117,7 +131,6 @@ namespace ft
 
 		template< class U1, class U2 >
 		pair( const pair<U1, U2>& p ) : first(p.first), second(p.second) {};
-
 		pair& operator=( const pair& other ) {
 			if (this == &other)
 				return *this;
@@ -133,7 +146,19 @@ namespace ft
 	{
 		while (first1 != last1)
 		{
-			if (!(*first1 == *first2)) // or: if (!pred(*first1,*first2)), for version 2
+			if (!(*first1 == *first2)) 
+				return false;
+			++first1;
+			++first2;
+		}
+		return true;
+	}
+	template<class InputIterator1, class InputIterator2>
+	bool equal2(InputIterator1 first1, InputIterator1 last1, InputIterator2 first2)
+	{
+		while (first1 != last1)
+		{
+			if (!(first1->second == first2->second)) 
 				return false;
 			++first1;
 			++first2;

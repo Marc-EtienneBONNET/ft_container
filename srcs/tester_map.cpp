@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:06:24 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/09 18:07:22 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/14 17:13:40 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ void	teste_map()
 	std::cout << "empty            : " << BLEU_2 << test_map.empty() << BLANC << " std : " << VERT << std_map.empty() << BLANC << std::endl;
 	std::cout << "begin ()         : key = " << BLEU_2 << (test_map.begin())->first << BLANC " val = " << (test_map.begin())->second << std::endl;
 	std::cout << "std begin ()     : key = " << VERT << (std_map.begin())->first << " val = " << (std_map.begin())->second << BLANC <<  std::endl;
-	std::cout << "end ()           : key = " << BLEU_2 << (test_map.end())->first << " val = " << (test_map.end())->second << BLANC << std::endl;
-	std::cout << "std end ()       : key = " << VERT << (std_map.end())->first << " val = " << (std_map.end())->second << BLANC << std::endl;
 	std::cout << "operator[-2]     : val = " << BLEU_2 << test_map[-2] << BLANC << " std : " << VERT << std_map[-2] << BLANC << std::endl;
 	std::cout << "operator[-10]    : val = " << BLEU_2 << test_map[-10]<< BLANC  << " std : " << VERT << std_map[-10] << BLANC << std::endl;
 	std::cout << "operator[1]      : val = " << BLEU_2 << test_map[1] << BLANC << " std : " << VERT << std_map[1]  << BLANC << std::endl;

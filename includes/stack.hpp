@@ -6,13 +6,18 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 10:57:22 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/05 22:13:14 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/14 17:15:11 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_HPP
 # define STACK_HPP
-#include "my_define_include.hpp"
+# include "ft.hpp"
+# include "vector.hpp"
+# include "map.hpp"
+# include "iterator/random_access_iterator.hpp"
+# include "iterator/random_access_riverse_iterator.hpp"
+# include <iostream>
 
 namespace ft
 {
@@ -20,6 +25,7 @@ namespace ft
 	class stack
 	{
 	public :
+		typedef Container							container_type;
 		typedef typename Container::value_type		value_type;
 		typedef typename Container::size_type		size_type;
 		typedef typename Container::reference		reference;
@@ -64,5 +70,4 @@ namespace ft
 	bool operator>=( const stack<T,Container>& lhs, const stack<T,Container>& rhs ) { return lhs.c >= rhs.c; };
 };
 
-#include "../templates/stack.tpp"
 #endif

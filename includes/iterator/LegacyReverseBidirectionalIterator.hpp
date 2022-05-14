@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   LegacyReverseBidirectionalIterator copy.hpp        :+:      :+:    :+:   */
+/*   LegacyReverseBidirectionalIterator.hpp             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:15:22 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/09 15:17:39 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/14 09:50:13 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEGACYREVERSEBIDIRECTIONALITERATOR_HPP
 #define LEGACYREVERSEBIDIRECTIONALITERATOR_HPP
-#include "my_define_include.hpp"
+# include "ft.hpp"
 namespace ft {
 	template <typename T, bool B, class C>
 	class LegacyBidirectionalIterator ;

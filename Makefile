@@ -6,7 +6,7 @@
 #    By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 13:05:15 by mbonnet           #+#    #+#              #
-#    Updated: 2022/05/09 15:59:20 by mbonnet          ###   ########.fr        #
+#    Updated: 2022/05/14 08:47:33 by mbonnet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRCS			=	srcs/main.cpp\
 					srcs/tester_iterator.cpp\
 					srcs/tester_stack.cpp\
 					srcs/tester_map.cpp\
+					srcs/main_de_test.cpp\
 
 OBJS			=	${addprefix ,${SRCS:.cpp=.o}}
 

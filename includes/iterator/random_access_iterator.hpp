@@ -6,13 +6,15 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 16:35:14 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/05 22:56:03 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/14 17:14:48 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../my_define_include.hpp"
+//# include "../my_define_include.hpp"
 #ifndef R_iterator_HPP
 # define R_iterator_HPP
+# include "ft.hpp"
+
 
 namespace ft
 {
@@ -65,10 +67,10 @@ template <typename T>
 bool    operator!=(const ft::iterator<T, false> &ori, const ft::iterator<T, true> &ori_2){ if (ori.base() != ori_2.base()){return (true);} return (false);};
 template <typename T>
 bool    operator==(const ft::iterator<T, false> &ori, const ft::iterator<T, true> &ori_2){ if (ori.base() == ori_2.base()){return (true);} return (false);};
+template<typename T>
+ft::iterator<T, false>	operator+(typename ft::iterator<T, false>::difference_type offset, ft::iterator<T, false> & rhs) { return (ft::iterator<T, false>(rhs.base() + offset)); }
 template <typename T>
-ft::iterator<T,false>    operator+(const ft::iterator<T, false> &ori, const ft::iterator<T, true> ori_2){return (ft::iterator<T,false>(ori.base() + ori_2.base()));};
-template <typename T>
-ft::iterator<T,false>    operator-(const ft::iterator<T, false> &ori, const ft::iterator<T, true> ori_2){return (ft::iterator<T,false>(ori.base() - ori_2.base()));};
+ft::iterator<T, false>	operator-(typename ft::iterator<T, false>::difference_type offset, ft::iterator<T, false> & rhs) { return (ft::iterator<T, false>(rhs.base() - offset)); }
 template <typename T>
 bool    operator<(const ft::iterator<T, false> &ori, const ft::iterator<T, true> &ori_2){ if (ori.base() < ori_2.base()){return (true);} return (false);};
 template <typename T>
@@ -77,5 +79,5 @@ template <typename T>
 bool    operator<=(const ft::iterator<T, false> &ori, const ft::iterator<T, true> &ori_2){ if (ori.base() <= ori_2.base()){return (true);} return (false);};
 template <typename T>
 bool    operator>=(const ft::iterator<T, false> &ori, const ft::iterator<T, true> &ori_2){ if (ori.base() >= ori_2.base()){return (true);} return (false);};
-# include "../../templates/iterator/random_access_iterator.tpp"
+
 #endif

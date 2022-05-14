@@ -6,13 +6,16 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 10:57:22 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/05 23:12:22 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/14 17:15:05 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_HPP 
 # define VECTOR_HPP
-#include "my_define_include.hpp"
+# include "ft.hpp"
+# include "iterator/random_access_iterator.hpp"
+# include "iterator/random_access_riverse_iterator.hpp"
+# include <iostream>
 
 namespace ft
 {
@@ -98,7 +101,7 @@ namespace ft
 				position = _insert_n(position, val, 1);
 		}
 		template<class ite>
-		void insert(iterator position, ite first, ite last)
+		void insert(iterator position, ite first, ite last,typename enable_if< !is_integral< ite >::value >::type* = 0)
 		{
 			ite			tmp_first = first;
 			pointer		tmp;
@@ -106,7 +109,7 @@ namespace ft
 			size_type	len = 0;
 			for (ite to = first; to != last; to++)
 				len++;
-			if (this->_size + len < this->_capacity)
+			if (this->_size + len > this->_capacity)
 			{
 				tmp = this->_alloc.allocate(len);
 				for (size_type i = 0; tmp_first != last; tmp_first++, i++)
@@ -121,7 +124,7 @@ namespace ft
 				for (size_type l = 0; l < len; l++, i++)
 					this->_alloc.construct((tab + i), *(tmp + l));
 				for (; i - len < this->_size; i++)
-					this->_alloc.construct((tab + 1), *(this->_ptr + i - len));
+					this->_alloc.construct((tab + i), *(this->_ptr + i - len));
 				clear();
 				this->_size = tmp_size;
 				this->_alloc.deallocate(this->_ptr, this->_capacity);
@@ -311,21 +314,18 @@ namespace ft
 		return (true);
 	};
 	template<class T, class Alloc>
-	bool operator>(const vector<T,Alloc> &v1, const vector<T,Alloc> &v2)
+	bool operator<(const vector<T,Alloc> &v1, const vector<T,Alloc> &v2)
 	{
 		return (lexicographical_compare(v1.begin(), v1.end(), v2.begin(), v2.end()));
 	};
 	template<class T, class Alloc>
-	bool operator<(const vector<T,Alloc> &v1, const vector<T,Alloc> &v2){if (v1 > v2) return (false); return (true);};
+	bool operator>(const vector<T,Alloc> &v1, const vector<T,Alloc> &v2){if (v1 < v2 || v1 == v2) return false; return (true);};
+	template<class T, class Alloc>
+	bool operator>=(const vector<T,Alloc> &v1, const vector<T,Alloc> &v2){return !(v1 < v2);};
 	template<class T, class Alloc>
 	bool operator<=(const vector<T,Alloc> &v1, const vector<T,Alloc> &v2)
 	{
-		if (v1 < v2 || v1 == v2)
-			return (true);
-		return (false);
+		return !(v1 > v2);
 	};
-	template<class T, class Alloc>
-	bool operator>=(const vector<T,Alloc> &v1, const vector<T,Alloc> &v2){if (v1 > v2 || v1 == v2) return (true); return (false);};
 };
-#include "../templates/vector.tpp"
 #endif

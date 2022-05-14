@@ -10,9 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../my_define_include.hpp"
+//# include "../my_define_include.hpp"
 #ifndef R_R_Reverseiterator_HPP
 # define R_R_Reverseiterator_HPP
+# include "ft.hpp"
+
 
 namespace ft
 {
@@ -29,7 +31,9 @@ namespace ft
         typedef typename ft::iterator_traits<T>::value_type          value_type;
         Reverseiterator(void) : current(){};
         explicit Reverseiterator(T ori) : current(ori){};
-        Reverseiterator(const Reverseiterator &ori){ if (&ori != this){this->current = ori.current;}};
+        template< class U >
+			Reverseiterator( const Reverseiterator<U>& other ): current(other.base()) {};
+        //Reverseiterator(const Reverseiterator &ori){ if (&ori != this){this->current = ori.current;}};
         ~Reverseiterator(void) {};
         Reverseiterator &operator=(const Reverseiterator &ori){if (&ori != this){this->current = ori.current;} return (*this);};
         
@@ -76,6 +80,4 @@ namespace ft
 	template< class iterator >
 	bool	operator>=(const Reverseiterator<iterator>& lhs, const Reverseiterator<iterator>& rhs) { return (lhs.base() <= rhs.base()); };
 }
-
-# include "../../templates/iterator/random_access_riverse_iterator.tpp"
 #endif

@@ -6,14 +6,15 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 12:54:47 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/09 15:50:39 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/14 09:52:35 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
  
 #ifndef REDBLACKTREE_HPP
 #define REDBLACKTREE_HPP
-#include "my_define_include.hpp"
+# include "ft.hpp"
+
 namespace ft
 {
 		template <typename T>

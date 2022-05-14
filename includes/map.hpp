@@ -6,13 +6,20 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:11:32 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/09 17:39:55 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/14 17:01:30 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_HPP
 #define MAP_HPP
-#include "my_define_include.hpp"
+# include "ft.hpp"
+# include "iterator/LegacyBidirectionalIterator.hpp"
+# include "iterator/LegacyReverseBidirectionalIterator.hpp"
+# include "RedBlackTree.hpp"
+# include "vector.hpp"
+# include "stack.hpp"
+# include <iostream>
+
 
 namespace ft {
 	template< class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair<const Key, T> > >
@@ -73,7 +80,7 @@ namespace ft {
 			}
 
 			template< class InputIt >
-			void insert ( InputIt first, InputIt last)
+			void insert ( InputIt first, InputIt last )
 			{
 				while (first != last)
 				{
@@ -101,7 +108,7 @@ namespace ft {
 			{
 				_bst.deleteNode(*pos);
 			}
-			void erase( iterator first, iterator last)
+			void erase( iterator first, iterator last )
 			{
                 while (first != last)
                     this->erase((*(first++)).first);
@@ -118,7 +125,7 @@ namespace ft {
 			}
 
 			// TEMPORARY
-			void print() {std::cout << "--------------------------------" << std::endl <<"affichage de mon arbre : " << std::endl; _bst.printTree(); std::cout << "--------------------------------" << std::endl<< std::endl; };
+			void print() { _bst.printTree(); };
 
 			void swap (map& x) { _bst.swap(x._bst); }
 			allocator_type get_allocator() const { return _alloc; };
@@ -151,7 +158,6 @@ namespace ft {
 			}
 
 			key_compare key_comp() const { return _comp; }
-
 			value_compare value_comp() const { return value_compare(_comp); }
 
 			iterator find(const key_type& k)
@@ -247,7 +253,7 @@ namespace ft {
     {
         if (lhs.size() != rhs.size())
             return false;
-        return ft::equal(lhs.begin(), lhs.end(), rhs.begin());
+        return ft::equal2(lhs.begin(), lhs.end(), rhs.begin());
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -259,7 +265,7 @@ namespace ft {
     template< class Key, class T, class Compare, class Alloc >
     bool operator<( const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs )
     {
-        return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+        return (ft::lexicographical_compare2(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -280,6 +286,4 @@ namespace ft {
         return !(lhs < rhs);
     }
 }
-
-
 #endif

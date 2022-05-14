@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:32:37 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/05 22:56:03 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/14 17:10:42 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,8 @@ void	teste_reverse_iterator()
 	info_moniteur_iterator(0,"init d un reverse_iterator par copie");
 	ft::vector<int>::reverse_iterator ft_iterator1(ft_vector0.begin());
 	std::vector<int>::reverse_iterator std_iterator1(std_vector0.begin());
-	etat_iterator(ft_iterator1, std_iterator1);
-	info_moniteur_iterator(0,"fin");
+	//etat_iterator(ft_iterator1, std_iterator1);
+	//info_moniteur_iterator(0,"fin");
 	ft::vector<int>::reverse_iterator ft_iterator2(ft_vector0.begin() + 3);
 	std::vector<int>::reverse_iterator std_iterator2(std_vector0.begin() + 3);
 	ft::vector<int>::reverse_iterator ft_iterator3(ft_vector0.begin());

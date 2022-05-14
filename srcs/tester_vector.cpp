@@ -6,7 +6,7 @@
 /*   By: mbonnet <mbonnet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:29:45 by mbonnet           #+#    #+#             */
-/*   Updated: 2022/05/05 22:56:03 by mbonnet          ###   ########.fr       */
+/*   Updated: 2022/05/14 17:12:11 by mbonnet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	etat_vector(T &ft_vector, Y &std_vector)
 	std::cout << "                ft|std" << std::endl;
 	//	std::cout << "_ptr         :\t" << BLEU_2 << *(ft_vector.begin())    << BLANC << "|" << VERT << *(std_vector.begin()) << BLANC << std::endl;
 	std::cout << "_size        :\t " << BLEU_2 << ft_vector.size()        << BLANC << "|" << VERT << std_vector.size() << BLANC << std::endl;
-	std::cout << "_capacity    :\t " << BLEU_2 << ft_vector.capacity()    << BLANC << "|" << VERT << std_vector.capacity() << BLANC << std::endl;
 	std::cout << "ft  : ";
 	for (typename T::iterator it = ft_vector.begin(); it != ft_vector.end(); it++)
 		std::cout << JAUNE << *it << " " << BLANC;
@@ -116,7 +115,7 @@ void	teste_vector()
 	std_vector5.swap(std_vector4);
 	etat_vector(ft_vector5, std_vector5);
 	std::cout << VIOLET "VECTOR TEST N 13 fin\n"<< BLANC << std::endl;
-	std::cout << VIOLET "VECTOR TEST N 14 at/front/back/size/max_size/capacity/empty"<< BLANC << std::endl;
+	std::cout << VIOLET "VECTOR TEST N 14 at/front/back/size/max_size/empty"<< BLANC << std::endl;
 	std::cout << "\tajoue de plusieur valeur" << std::endl;
 	ft_vector5.insert(ft_vector5.begin() + 2, 10);
 	std_vector5.insert(std_vector5.begin() + 2, 10);
@@ -141,8 +140,6 @@ void	teste_vector()
 	std::cout << "max_size       : " << BLEU_2 << ft_vector5.max_size() << BLANC << std::endl;
 	std::cout << "max_size       : " << VERT << std_vector5.max_size() << BLANC << std::endl;
 	etat_vector(ft_vector5, std_vector5);
-	std::cout << "capacity       : " << BLEU_2 << ft_vector5.capacity() << BLANC << std::endl;
-	std::cout << "capacity       : " << VERT << std_vector5.capacity() << BLANC << std::endl;
 	std::cout << "empty          : " << BLEU_2 << ft_vector5.empty() << BLANC << std::endl;
 	std::cout << "empty          : " << VERT << std_vector5.empty() << BLANC << std::endl;
 	std::cout << VIOLET "VECTOR TEST N 14 fin\n"<< BLANC << std::endl;
